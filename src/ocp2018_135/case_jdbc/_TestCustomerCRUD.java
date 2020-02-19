@@ -48,11 +48,14 @@ public class _TestCustomerCRUD {
 //		System.out.println(">>> 修改客戶 <<<");
 //		update(2);
 
-		System.out.println(">>> 刪除客戶 <<<");
-		delete(1);
+//		System.out.println(">>> 刪除客戶 <<<");
+//		delete(1);
 
-		System.out.println(">>> 查詢客戶 <<<");
-		query();
+//		System.out.println(">>> 查詢客戶 <<<");
+//		query();
+
+		System.out.println(">>> 查詢客戶 By ID <<<");
+		System.out.println(find(2));
 	}
 	
 	public static void create() {
@@ -71,6 +74,10 @@ public class _TestCustomerCRUD {
 	public static void query() {
 		customerDAO.query().stream()
 			.forEach(System.out::println);
+	}
+	
+	public static Customer find(int id) {
+		return customerDAO.find(2);
 	}
 	
 	public static void update(int id) {

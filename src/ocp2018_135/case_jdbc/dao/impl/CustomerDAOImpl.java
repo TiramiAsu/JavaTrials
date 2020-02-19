@@ -111,8 +111,31 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public Customer find(int id) {
-		// TODO Auto-generated method stub
+
+		try {
+			conn = DatabaseManager.getInstance().getConnection();
+
+			String sql = "SELECT * FROM customers WHERE id=" + id;
+			ps = conn.prepareStatement(sql);
+			System.out.println(">>> find SQL: " + ps);
+			rs = ps.executeQuery();
+
+			List retultList = resultToList(rs);
+			// System.out.println(retultList);
+			return (Customer) BeanUtils.MapToBean(new Customer(), (Map) retultList.get(0));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DatabaseManager.getInstance().close(ps);
+				DatabaseManager.getInstance().close(conn);
+				DatabaseManager.getInstance().close(rs);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return null;
 	}
 
