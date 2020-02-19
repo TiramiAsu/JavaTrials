@@ -118,8 +118,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void update(int id, Customer customer) {
-		// TODO Auto-generated method stub
 
+		try {
+			conn = DatabaseManager.getInstance().getConnection();
+
+			String sql = "UPDATE customers SET code=?, name=?, phone=?, address=?, relationman=?, remark=? "
+					+ "WHERE id=" + id;
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, customer.getCode());
+			ps.setString(2, customer.getName());
+			ps.setString(3, customer.getPhone());
+			ps.setString(4, customer.getAddress());
+			ps.setString(5, customer.getRelationman());
+			ps.setString(6, customer.getRemark());
+			System.out.println(">>> update SQL: " + ps);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DatabaseManager.getInstance().close(ps);
+				DatabaseManager.getInstance().close(conn);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override

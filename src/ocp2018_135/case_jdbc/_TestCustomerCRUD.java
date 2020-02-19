@@ -45,6 +45,9 @@ public class _TestCustomerCRUD {
 //		System.out.println(">>> 新增客戶 <<<");
 //		create();
 
+		System.out.println(">>> 修改客戶 <<<");
+		update(2);
+
 		System.out.println(">>> 查詢客戶 <<<");
 		query();
 	}
@@ -65,5 +68,12 @@ public class _TestCustomerCRUD {
 	public static void query() {
 		customerDAO.query().stream()
 			.forEach(System.out::println);
+	}
+	
+	public static void update(int id) {
+		Customer customer = customerDAO.find(id);
+		System.out.println(customer);
+		customer.setName("Zark");
+		customerDAO.update(id, customer);
 	}
 }
