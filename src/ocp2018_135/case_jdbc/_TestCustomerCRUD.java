@@ -42,10 +42,13 @@ public class _TestCustomerCRUD {
 	*/
 	public static void main(String[] args) {
 
-		System.out.println(">>> 新增客戶 <<<");
-		create();
-	}
+//		System.out.println(">>> 新增客戶 <<<");
+//		create();
 
+		System.out.println(">>> 查詢客戶 <<<");
+		query();
+	}
+	
 	public static void create() {
 
 		// 新增客戶資料
@@ -57,5 +60,10 @@ public class _TestCustomerCRUD {
 		customerDAO.create(customer1); // 資料已經進資料庫，所以 static 覆蓋沒有關係(購物車就不可用這方式)
 		customerDAO.create(customer2);
 		customerDAO.create(customer3);
+	}
+	
+	public static void query() {
+		customerDAO.query().stream()
+			.forEach(System.out::println);
 	}
 }
