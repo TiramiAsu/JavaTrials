@@ -45,8 +45,11 @@ public class _TestCustomerCRUD {
 //		System.out.println(">>> 新增客戶 <<<");
 //		create();
 
-		System.out.println(">>> 修改客戶 <<<");
-		update(2);
+//		System.out.println(">>> 修改客戶 <<<");
+//		update(2);
+
+		System.out.println(">>> 刪除客戶 <<<");
+		delete(1);
 
 		System.out.println(">>> 查詢客戶 <<<");
 		query();
@@ -75,5 +78,9 @@ public class _TestCustomerCRUD {
 		System.out.println(customer);
 		customer.setName("Zark");
 		customerDAO.update(id, customer);
+	}
+	
+	public static void delete(int id) {
+		customerDAO.delete(id);
 	}
 }
